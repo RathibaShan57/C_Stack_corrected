@@ -13,7 +13,9 @@ Defined in `backend/src/ScholarshipCMGroups.Api/ScholarshipCMGroups.Api.csproj` 
 | `Microsoft.AspNetCore.Authentication.JwtBearer` | JWT validation |
 | `Microsoft.Extensions.Identity.Core` | Password hashing |
 | `Swashbuckle.AspNetCore` | OpenAPI document |
-| `Microsoft.NET.Test.Sdk`, `xunit`, `coverlet.collector` | Tests and coverage |
+| `Microsoft.NET.Test.Sdk`, `xunit`, `coverlet.collector` 6.0.0, `coverlet.msbuild` 6.0.0 | Tests and Coverlet line/branch coverage |
+| `altcover` 8.8.173 (`altcover.global` in `.config/dotnet-tools.json`) | AltCover path coverage |
+| `Microsoft.CodeAnalysis.NetAnalyzers` 8.0.0 (`Directory.Analyzers.props`) | Roslyn lint / rule violations |
 | `Microsoft.EntityFrameworkCore.InMemory` | In-memory tests |
 | `Microsoft.AspNetCore.Mvc.Testing` | API integration tests |
 

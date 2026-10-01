@@ -1,0 +1,23 @@
+<Project>
+  <!--
+    C# primary lint tool: roslyn-analyzers 8.0.0
+    (Whitebox_Tools_Registry / catalog_master.py).
+
+    Pin Microsoft.CodeAnalysis.NetAnalyzers 8.0.0 and disable the SDK-bundled
+    analyzers so the version the platform catalog expects is the one that runs.
+    The platform roslyn-analyzers runner skips injecting its own
+    Directory.Analyzers.props when a root Directory.Build.props already exists,
+    so this file must be imported from that root props file.
+  -->
+  <PropertyGroup Condition="'$(IsTestProject)' != 'true'">
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
+    <AnalysisLevel>8.0</AnalysisLevel>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(IsTestProject)' != 'true'">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>

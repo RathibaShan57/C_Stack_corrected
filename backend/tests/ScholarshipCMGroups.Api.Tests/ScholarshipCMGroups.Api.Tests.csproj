@@ -9,6 +9,19 @@
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
 
+  <!--
+    Coverlet 6.0.0 (catalog_master.py csharp/coverlet).
+    The platform runner runs: dotnet test /collect:"XPlat Code Coverage"
+    via coverlet.collector. coverlet.msbuild is the same version so a local
+    CollectCoverage=true path matches the registry pin.
+  -->
+  <PropertyGroup Condition="'$(CollectCoverage)' == 'true'">
+    <CoverletOutputFormat>cobertura,json,opencover</CoverletOutputFormat>
+    <CoverletOutput>$(MSBuildThisFileDirectory)../../../reports/coverage/backend/</CoverletOutput>
+    <Include>[ScholarshipCMGroups.Api]*</Include>
+    <ExcludeByFile>**/Views/**/*.cshtml;**/obj/**/*.cs</ExcludeByFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
     <PackageReference Include="xunit" Version="2.9.2" />
@@ -16,24 +29,24 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <!-- Produces the Cobertura coverage report that the Excel code-coverage metrics read (Coverlet 6.0.0). -->
     <PackageReference Include="coverlet.collector" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <!-- AltCover path coverage tool version 8.8.173 -->
+    <PackageReference Include="coverlet.msbuild" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <!--
+      AltCover 8.8.173 — catalog_master.py csharp/altcover.
+      The platform runner uses the altcover.global tool (see .config/dotnet-tools.json).
+      The PackageReference is the same pin so restore/build graphs include the tool.
+    -->
     <PackageReference Include="altcover" Version="8.8.173">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <!-- Roslyn NetAnalyzers version 8.0.0 -->
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <!-- Lets repository and DbContext behaviour be exercised without a SQL Server instance. -->
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.31" />
-    <!-- Hosts the real request pipeline in-process for the API-level tests. -->
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.31" />
   </ItemGroup>
 

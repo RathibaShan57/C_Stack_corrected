@@ -1,0 +1,11 @@
+<Project>
+  <!--
+    Optional lint gate. Default `dotnet build` / `dotnet test` stay green so
+    coverlet and altcover can restore and run. Pass -p:LintGate=true to treat
+    analyzer warnings as errors.
+  -->
+  <PropertyGroup Condition="'$(LintGate)' == 'true' And '$(IsTestProject)' != 'true'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+  </PropertyGroup>
+</Project>

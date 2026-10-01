@@ -23,9 +23,10 @@ indent_size = 4
 # ---------------------------------------------------------------------------
 # C# analyzer configuration
 #
-# The solution builds with TreatWarningsAsErrors, so every rule left at warning
-# level is a build gate. The Excel "Lint / Rule Violations" family reads this
-# configuration plus the resulting build output as its evidence.
+# Analyzer warnings stay warnings on a default build so coverlet / altcover
+# restore and test can complete. Pass -p:LintGate=true to treat them as errors.
+# The Excel "Lint / Rule Violations" family reads this configuration plus the
+# Roslyn SARIF from Microsoft.CodeAnalysis.NetAnalyzers 8.0.0.
 # ---------------------------------------------------------------------------
 #
 # CA2007 (ConfigureAwait) is intentionally left disabled: ASP.NET Core has no
