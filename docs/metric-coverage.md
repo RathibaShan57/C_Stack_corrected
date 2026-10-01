@@ -1,5 +1,10 @@
 # Metric coverage
 
+`SR-west-coast-fitness-club-negative-esbuild-pnpm` rematrix (Oct 2026): same
+negative fixtures as this note, on **C# 13 / net9.0**, **TypeScript 5.6.3**,
+**Node 20 + pnpm + esbuild**. See the branch README for what repo wiring can
+and cannot schedule.
+
 This note records what was verified on this machine on 29 September 2026, against Testable at `qa` `9f8b9f41c`. A tool is listed as executed only when this workspace actually ran it. Platform registration is not the same thing as a local run.
 
 ## Executed here

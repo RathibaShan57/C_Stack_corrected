@@ -1,0 +1,21 @@
+<Project>
+  <!--
+    C# primary lint: Microsoft.CodeAnalysis.NetAnalyzers 9.0.0
+    (catalog_master.py roslyn-analyzers is 8.0.0 on net8 branches).
+    This net9 branch pins analyzers 9.0.0 and disables the SDK-bundled set
+    so the version in the restore graph is explicit.
+    The platform roslyn-analyzers runner skips injecting Directory.Analyzers.props
+    when a root Directory.Build.props already exists.
+  -->
+  <PropertyGroup Condition="'$(IsTestProject)' != 'true'">
+    <EnableNETAnalyzers>false</EnableNETAnalyzers>
+    <AnalysisLevel>9.0</AnalysisLevel>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(IsTestProject)' != 'true'">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>

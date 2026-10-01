@@ -37,7 +37,9 @@ secrets.json
 .DS_Store
 Thumbs.db
 
-# Vite cache
+# Bundler caches
 .vite/
+.parcel-cache/
+.pnpm-store/
 *.local
 *.tsbuildinfo
